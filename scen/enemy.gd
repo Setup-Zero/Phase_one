@@ -24,6 +24,3 @@ var health: = 100:
 		progress_bar.value = value
 		if value <=0:
 			queue_free()
-
-
-

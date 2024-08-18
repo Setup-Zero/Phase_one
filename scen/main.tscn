@@ -10,7 +10,7 @@
 [node name="main" type="Node2D" groups=["main"]]
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("2_47caf")]
-position = Vector2(286, 124)
+position = Vector2(277, 121)
 
 [node name="Spawner_points" parent="." instance=ExtResource("3_l6su5")]
 

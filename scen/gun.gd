@@ -33,6 +33,3 @@ func shoot():           ## for auto-aim
 func _on_timer_timeout():
 	gun_cooldown = true
 		#shoot()
-
-
-
