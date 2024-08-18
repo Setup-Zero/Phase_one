@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp0caguwq3ouu"]
+
+[sub_resource type="GDScript" id="GDScript_nl3s0"]
+script/source = "extends Area2D
+
+
+
+
+"
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = SubResource("GDScript_nl3s0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(-10, 10, -1, -9, 9, 9, 19, -10, 28, 10, 36, -12, 47, 11)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

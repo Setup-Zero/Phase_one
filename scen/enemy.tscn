@@ -1,0 +1,180 @@
+[gd_scene load_steps=19 format=3 uid="uid://crxgtikhpj7cc"]
+
+[ext_resource type="Script" path="res://scen/enemy.gd" id="1_m27ee"]
+[ext_resource type="Shader" path="res://scen/enemy.gdshader" id="2_a5cuo"]
+[ext_resource type="Texture2D" uid="uid://b341hyos82o5h" path="res://my_assets/Character-and-Zombie.png" id="2_u7536"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t75k6"]
+resource_local_to_scene = true
+shader = ExtResource("2_a5cuo")
+shader_parameter/flash_opacity = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5v2y"]
+atlas = ExtResource("2_u7536")
+region = Rect2(0, 120, 48, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpuly"]
+atlas = ExtResource("2_u7536")
+region = Rect2(48, 120, 48, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogd5m"]
+atlas = ExtResource("2_u7536")
+region = Rect2(96, 120, 48, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ncev"]
+atlas = ExtResource("2_u7536")
+region = Rect2(144, 120, 48, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3j76o"]
+atlas = ExtResource("2_u7536")
+region = Rect2(192, 120, 48, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fspx"]
+atlas = ExtResource("2_u7536")
+region = Rect2(240, 120, 48, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72ev5"]
+atlas = ExtResource("2_u7536")
+region = Rect2(288, 120, 48, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g0j24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5v2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpuly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogd5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ncev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3j76o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fspx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72ev5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfvqd"]
+size = Vector2(25, 35)
+
+[sub_resource type="Animation" id="Animation_y6qe4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nqdd6"]
+resource_name = "hit"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_guhsn"]
+resource_name = "run"
+length = 0.60001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7bi6q"]
+_data = {
+"RESET": SubResource("Animation_y6qe4"),
+"hit": SubResource("Animation_nqdd6"),
+"run": SubResource("Animation_guhsn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwpp"]
+size = Vector2(32.5, 30)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_m27ee")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_t75k6")
+scale = Vector2(2.26563, 2.14286)
+sprite_frames = SubResource("SpriteFrames_g0j24")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_hfvqd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7bi6q")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.25, -1.63913e-06)
+shape = SubResource("RectangleShape2D_fnwpp")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -17.5
+offset_top = -27.5
+offset_right = 17.5
+offset_bottom = -19.5
+max_value = 60.0
+value = 60.0
+show_percentage = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

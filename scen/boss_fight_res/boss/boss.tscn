@@ -1,0 +1,380 @@
+[gd_scene load_steps=27 format=3 uid="uid://ciq4dmc7gv0xq"]
+
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/boss.gd" id="1_5bh2q"]
+[ext_resource type="Texture2D" uid="uid://bodrsg2cvdb2r" path="res://assets/player.png" id="1_qfjat"]
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/StateFiniteMachine.gd" id="2_drq7t"]
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/follow.gd" id="4_hsbj5"]
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/atk.gd" id="5_0culd"]
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/death.gd" id="7_47spj"]
+[ext_resource type="PackedScene" uid="uid://bcvx2lsk2461v" path="res://scen/boss_bullet.tscn" id="8_665ue"]
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/bomb_atk.gd" id="9_sm0bi"]
+[ext_resource type="PackedScene" uid="uid://br8rm5j2e2dc4" path="res://scen/bomb_bullet.tscn" id="10_netk1"]
+[ext_resource type="Script" path="res://scen/boss_fight_res/boss/shoot_atk.gd" id="10_x4ye6"]
+
+[sub_resource type="Animation" id="Animation_udlen"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui/end:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.968627, 0.968627, 0.968627, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ngb3k"]
+resource_name = "atk_1"
+length = 0.50001
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_86xdc"]
+resource_name = "atk_2"
+length = 0.60001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_twhny"]
+resource_name = "dead"
+
+[sub_resource type="Animation" id="Animation_u2qfw"]
+resource_name = "death"
+length = 0.50001
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateFiniteMachine/death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stage_ended"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g0sk1"]
+resource_name = "follow"
+length = 0.500017
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_dpu2j"]
+resource_name = "idle"
+length = 1.00002
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_u66qb"]
+resource_name = "shoot_atk"
+length = 0.70001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateFiniteMachine/shoot_atk")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cs3vd"]
+resource_name = "stage_end"
+length = 0.90001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/end:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.968627, 0.968627, 0.968627, 0), Color(0.968627, 0.968627, 0.968627, 1), Color(0.968627, 0.968627, 0.968627, 1), Color(0.968627, 0.968627, 0.968627, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6vx0v"]
+resource_name = "summon"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_g8nkk"]
+resource_name = "teleport"
+length = 0.50001
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uvej3"]
+_data = {
+"RESET": SubResource("Animation_udlen"),
+"atk_1": SubResource("Animation_ngb3k"),
+"atk_2": SubResource("Animation_86xdc"),
+"dead": SubResource("Animation_twhny"),
+"death": SubResource("Animation_u2qfw"),
+"follow": SubResource("Animation_g0sk1"),
+"idle": SubResource("Animation_dpu2j"),
+"shoot_atk": SubResource("Animation_u66qb"),
+"stage_end": SubResource("Animation_cs3vd"),
+"summon": SubResource("Animation_6vx0v"),
+"teleport": SubResource("Animation_g8nkk")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7p7wr"]
+radius = 31.0
+height = 86.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ns3aj"]
+radius = 281.144
+
+[sub_resource type="LabelSettings" id="LabelSettings_ayiv4"]
+
+[sub_resource type="GDScript" id="GDScript_yekch"]
+script/source = "extends State
+
+@onready var collision = $\"../../detection/CollisionShape2D\"
+@onready var progress_bar = owner.find_child(\"ProgressBar\")
+
+
+var player_entered : bool = false:
+	set (value):
+		player_entered = value
+		collision.set_deferred(\"disabled\",value)
+		progress_bar.set_deferred(\"visible\",value)
+		
+
+
+
+func _on_detection_body_entered(body):
+	player_entered = true
+	
+func transition():
+	if player_entered:
+		get_parent().change_state(\"follow\")
+	
+"
+
+[node name="boss" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_5bh2q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_qfjat")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uvej3")
+}
+autoplay = "follow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7p7wr")
+
+[node name="detection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_ns3aj")
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="ui"]
+visible = false
+offset_left = 285.0
+offset_top = 574.0
+offset_right = 859.0
+offset_bottom = 617.0
+theme_override_font_sizes/font_size = 28
+value = 100.0
+
+[node name="name" type="Label" parent="ui/ProgressBar"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -59.0
+offset_right = 108.0
+theme_override_font_sizes/font_size = 38
+text = "Boss
+"
+
+[node name="end" type="Label" parent="ui"]
+visible = false
+self_modulate = Color(0.968627, 0.968627, 0.968627, 1)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -22.0
+offset_right = 94.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 34
+text = "Stage ended "
+
+[node name="debug" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -70.0
+offset_right = 21.0
+offset_bottom = -21.0
+text = "debug
+
+"
+label_settings = SubResource("LabelSettings_ayiv4")
+
+[node name="StateFiniteMachine" type="Node2D" parent="."]
+script = ExtResource("2_drq7t")
+
+[node name="idle" type="Node2D" parent="StateFiniteMachine"]
+script = SubResource("GDScript_yekch")
+
+[node name="follow" type="Node2D" parent="StateFiniteMachine"]
+script = ExtResource("4_hsbj5")
+
+[node name="atk" type="Node2D" parent="StateFiniteMachine"]
+script = ExtResource("5_0culd")
+
+[node name="death" type="Node2D" parent="StateFiniteMachine"]
+script = ExtResource("7_47spj")
+
+[node name="shoot_atk" type="Node2D" parent="StateFiniteMachine"]
+script = ExtResource("10_x4ye6")
+bullet_node = ExtResource("8_665ue")
+
+[node name="bomb_atk" type="Node2D" parent="StateFiniteMachine"]
+script = ExtResource("9_sm0bi")
+bullet_node = ExtResource("10_netk1")
+
+[connection signal="body_entered" from="detection" to="StateFiniteMachine/idle" method="_on_detection_body_entered"]

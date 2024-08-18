@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcvx2lsk2461v"]
+
+[ext_resource type="Script" path="res://scen/boss_bullet.gd" id="1_uull8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8hwu"]
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 9
+script = ExtResource("1_uull8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j8hwu")
+debug_color = Color(0.476829, 0.489218, 0.857671, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

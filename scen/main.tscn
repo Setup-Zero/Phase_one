@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl56aa83yojuw"]
+
+[ext_resource type="PackedScene" uid="uid://cx7txv16xndu" path="res://scen/player.tscn" id="2_47caf"]
+[ext_resource type="PackedScene" uid="uid://cajvli6rivo77" path="res://scen/spawner_points.tscn" id="3_l6su5"]
+[ext_resource type="Script" path="res://scen/gate.gd" id="3_w05oa"]
+[ext_resource type="Texture2D" uid="uid://cg6b2oyv41h5w" path="res://assets/portal.png" id="4_p62i2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_syclk"]
+
+[node name="main" type="Node2D" groups=["main"]]
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_47caf")]
+position = Vector2(286, 124)
+
+[node name="Spawner_points" parent="." instance=ExtResource("3_l6su5")]
+
+[node name="gate" type="Node2D" parent="."]
+script = ExtResource("3_w05oa")
+
+[node name="Portal" type="Sprite2D" parent="gate"]
+position = Vector2(391, 172)
+scale = Vector2(0.144928, 0.144928)
+texture = ExtResource("4_p62i2")
+
+[node name="Area2D" type="Area2D" parent="gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gate/Area2D"]
+position = Vector2(391, 172)
+shape = SubResource("CapsuleShape2D_syclk")
+
+[connection signal="body_entered" from="gate/Area2D" to="gate" method="_on_area_2d_body_entered"]

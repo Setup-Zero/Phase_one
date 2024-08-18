@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://d20wnb5c17cgo"]
+
+[ext_resource type="PackedScene" uid="uid://10tsd4ghcwco" path="res://scens/main/bg.tscn" id="1_ydtuu"]
+[ext_resource type="PackedScene" uid="uid://gfoaq5m2q5s4" path="res://scens/player/player.tscn" id="2_g6kto"]
+[ext_resource type="PackedScene" uid="uid://dfctutiufjwm4" path="res://scens/bullet.tscn" id="3_5du7g"]
+[ext_resource type="PackedScene" uid="uid://ciq4dmc7gv0xq" path="res://scens/boss/boss.tscn" id="4_lyg0m"]
+
+[node name="main" type="Node2D"]
+
+[node name="bg" parent="." instance=ExtResource("1_ydtuu")]
+
+[node name="player" parent="." instance=ExtResource("2_g6kto")]
+position = Vector2(132, 295)
+bullet_node = ExtResource("3_5du7g")
+
+[node name="boss" parent="." instance=ExtResource("4_lyg0m")]
+position = Vector2(579, 86)

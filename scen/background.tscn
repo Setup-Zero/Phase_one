@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cab3mo1vodahm"]
+
+[ext_resource type="PackedScene" uid="uid://cajvli6rivo77" path="res://scen/spawner_points.tscn" id="2_8bimh"]
+[ext_resource type="PackedScene" uid="uid://cx7txv16xndu" path="res://scen/player.tscn" id="2_snii0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_57svj"]
+
+[node name="Background" type="Sprite2D"]
+position = Vector2(572, 330)
+scale = Vector2(0.597917, 0.612037)
+texture = SubResource("CanvasTexture_57svj")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_snii0")]
+
+[node name="Spawner_points" parent="." instance=ExtResource("2_8bimh")]

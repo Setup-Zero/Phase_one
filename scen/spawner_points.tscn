@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cajvli6rivo77"]
+
+[ext_resource type="Script" path="res://Spawner_points.gd" id="1_og636"]
+[ext_resource type="Texture2D" uid="uid://06vsll1tcuif" path="res://icon.svg" id="2_jwdpd"]
+
+[node name="Spawner_points" type="Node2D"]
+script = ExtResource("1_og636")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(168, -13)
+scale = Vector2(1, 0.46875)
+texture = ExtResource("2_jwdpd")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(111, 1)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(167, -22)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(210, 3)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj5m4ghvl56ku"]
+
+[ext_resource type="Script" path="res://scen/bullet.gd" id="1_smbvh"]
+[ext_resource type="Texture2D" uid="uid://bu64pb6nyr47f" path="res://bullet.png" id="2_ah27d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2x5v"]
+radius = 7.07107
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us34c"]
+atlas = ExtResource("2_ah27d")
+region = Rect2(10, 8, 10, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxivh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us34c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="bullet" type="Area2D"]
+top_level = true
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_smbvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.860097
+shape = SubResource("CircleShape2D_q2x5v")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_lxivh")
+animation = &"idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

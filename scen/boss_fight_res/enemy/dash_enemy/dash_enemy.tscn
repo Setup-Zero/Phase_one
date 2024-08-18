@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=3 uid="uid://bl607bg65ocba"]
+
+[ext_resource type="Texture2D" uid="uid://c3vi5jehu8jh0" path="res://assets/enemy.png" id="1_jlfpt"]
+[ext_resource type="Script" path="res://scens/enemy/dash_enemy/dash_enemy.gd" id="1_peh6d"]
+[ext_resource type="Script" path="res://scens/boss/StateFiniteMachine.gd" id="2_upivj"]
+[ext_resource type="Script" path="res://scens/state.gd" id="3_uya0i"]
+
+[sub_resource type="Animation" id="Animation_4o7k6"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_idaqa"]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_hptw2"]
+resource_name = "dead"
+length = 1.00001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_sg3o7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fiurj"]
+resource_name = "atk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gikdk"]
+_data = {
+"RESET": SubResource("Animation_sg3o7"),
+"atk": SubResource("Animation_fiurj"),
+"dash": SubResource("Animation_idaqa"),
+"dead": SubResource("Animation_hptw2"),
+"idle": SubResource("Animation_4o7k6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohvrs"]
+radius = 30.8058
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ottcq"]
+size = Vector2(836, 20)
+
+[node name="dash_enemy" type="CharacterBody2D"]
+script = ExtResource("1_peh6d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.688172, 0.688172)
+texture = ExtResource("1_jlfpt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gikdk")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ohvrs")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ottcq")
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="ui"]
+offset_left = -47.0
+offset_top = 36.0
+offset_right = 55.0
+offset_bottom = 63.0
+max_value = 60.0
+value = 60.0
+
+[node name="Label" type="Label" parent="ui/ProgressBar"]
+offset_top = 26.0
+offset_right = 97.0
+offset_bottom = 75.0
+text = "dash_enemy
+
+"
+
+[node name="debug" type="Label" parent="." groups=["debug"]]
+offset_left = -22.0
+offset_top = -63.0
+offset_right = 27.0
+offset_bottom = -40.0
+text = "debug
+"
+
+[node name="stateMach" type="Node2D" parent="."]
+script = ExtResource("2_upivj")
+
+[node name="dash" type="Node2D" parent="stateMach"]
+script = ExtResource("3_uya0i")
+
+[node name="atk" type="Node2D" parent="stateMach"]
+script = ExtResource("3_uya0i")
+
+[node name="death" type="Node2D" parent="stateMach"]
+script = ExtResource("3_uya0i")
+
+[node name="idle" type="Node2D" parent="stateMach"]

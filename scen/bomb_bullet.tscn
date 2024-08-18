@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://br8rm5j2e2dc4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hkt8"]
+radius = 27.0185
+
+[node name="bomb_bullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4hkt8")
+debug_color = Color(0.00481284, 0.000959188, 7.48652e-05, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

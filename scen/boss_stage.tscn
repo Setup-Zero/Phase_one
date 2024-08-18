@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cscpwnntwhjsw"]
+
+[ext_resource type="PackedScene" uid="uid://cx7txv16xndu" path="res://scen/player.tscn" id="1_du3en"]
+[ext_resource type="PackedScene" uid="uid://ciq4dmc7gv0xq" path="res://scen/boss_fight_res/boss/boss.tscn" id="2_2a16y"]
+
+[node name="boss_stage" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1129.0
+offset_bottom = 609.0
+color = Color(0.573679, 0.349923, 0.386178, 1)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_du3en")]
+position = Vector2(317, 228)
+
+[node name="boss" parent="." instance=ExtResource("2_2a16y")]
+position = Vector2(841, 489)

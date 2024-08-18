@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://oxxf3pn8eax7"]
+
+[ext_resource type="Script" path="res://minions.gd" id="1_1t757"]
+[ext_resource type="Texture2D" uid="uid://c3vi5jehu8jh0" path="res://assets/enemy.png" id="2_07w6y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g8lh"]
+radius = 6.32456
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6w6l"]
+atlas = ExtResource("2_07w6y")
+region = Rect2(0, 0, 108, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jf27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6w6l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ajt4u"]
+radius = 6.08276
+
+[node name="minions" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_1t757")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3g8lh")
+
+[node name="animt" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.107527, 0.107527)
+sprite_frames = SubResource("SpriteFrames_7jf27")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="hp" type="ProgressBar" parent="."]
+clip_contents = true
+offset_left = -16.0
+offset_top = -15.0
+offset_right = 92.0
+offset_bottom = 12.0
+scale = Vector2(0.295763, 0.22343)
+max_value = 60.0
+value = 60.0
+
+[node name="hurt" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt"]
+shape = SubResource("CircleShape2D_ajt4u")
