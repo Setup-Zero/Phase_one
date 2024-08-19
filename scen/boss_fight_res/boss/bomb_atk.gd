@@ -6,7 +6,7 @@ func enter():
 	super.enter()
 	can_transition = false
 	
-	anime.play("shoot_atk")
+	anime.play("bomb_atk")
 	await anime.animation_finished
 	
 	can_transition = true

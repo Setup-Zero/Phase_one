@@ -39,7 +39,7 @@ scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_lxivh")
 animation = &"idle"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 enabled = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -196,6 +196,7 @@ debug_color = Color(0.121257, 0.021941, 0.000856084, 0.42)
 shape = SubResource("RectangleShape2D_iwsti")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+ignore_rotation = false
 enabled = false
 zoom = Vector2(5, 5)
 
@@ -203,6 +204,14 @@ zoom = Vector2(5, 5)
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -9.0
+offset_top = -15.0
+offset_right = 7.0
+offset_bottom = -10.0
+value = 100.0
+show_percentage = false
 
 [connection signal="area_entered" from="hurt" to="." method="_on_hurt_area_entered"]
 [connection signal="body_entered" from="hurt" to="." method="_on_hurt_body_entered"]

@@ -1,2 +1,2 @@
-# phase_one
- This is a godot nonfinished protoype
+# rogue_rip
+ This is a godot finished protoype

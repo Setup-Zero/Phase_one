@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://do83ab3vr1xob"]
+
+[ext_resource type="PackedScene" uid="uid://crxgtikhpj7cc" path="res://scen/enemy.tscn" id="1_v7oaw"]
+
+[node name="hard_coded" type="Node2D"]
+
+[node name="e1" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(45, -43)
+
+[node name="e10" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(45, -43)
+
+[node name="e11" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(45, -43)
+
+[node name="e12" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(941, 375)
+
+[node name="e13" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(912, 527)
+
+[node name="e14" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(741, 497)
+
+[node name="e15" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(827, 324)
+
+[node name="e16" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(970, 288)
+
+[node name="e17" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(894, 210)
+
+[node name="e18" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(735, 572)
+
+[node name="e2" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(-43, 82)
+
+[node name="e3" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(18, 89)
+
+[node name="e4" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(66, 56)
+
+[node name="e5" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(98, 7)
+
+[node name="e6" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(108, -42)
+
+[node name="e7" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(39, -11)
+
+[node name="e8" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(4, 40)
+
+[node name="e9" parent="." instance=ExtResource("1_v7oaw")]
+position = Vector2(26, 22)
