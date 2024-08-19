@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://wsx52otsym4k"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_ykowh"]
+[ext_resource type="Shader" path="res://scen/menu.gdshader" id="2_jkch8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1t8r7"]
+shader = ExtResource("2_jkch8")
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ykowh")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.196078, 0.647059, 0.960784, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 644.0
+
+[node name="Panel2" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_1t8r7")
+layout_mode = 0
+offset_left = 385.0
+offset_top = 196.0
+offset_right = 713.0
+offset_bottom = 368.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_left = 426.0
+offset_top = 225.0
+offset_right = 669.0
+offset_bottom = 331.0
+
+[node name="enter" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit	"
+
+[connection signal="pressed" from="VBoxContainer/enter" to="." method="_on_enter_pressed"]
+[connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]

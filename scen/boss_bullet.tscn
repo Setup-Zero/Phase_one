@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcvx2lsk2461v"]
 
 [ext_resource type="Script" path="res://scen/boss_bullet.gd" id="1_uull8"]
-[ext_resource type="Texture2D" uid="uid://drps7sa2aoled" path="res://assets/coin.png" id="2_nhvlu"]
+[ext_resource type="Texture2D" uid="uid://ggkxcwsvg84o" path="res://jam_assets/misslie.png" id="2_fe04q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8hwu"]
 
@@ -16,8 +16,10 @@ debug_color = Color(0.476829, 0.489218, 0.857671, 0.42)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.268657, 0.268657)
-texture = ExtResource("2_nhvlu")
+texture_filter = 1
+rotation = 3.12343
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_fe04q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
