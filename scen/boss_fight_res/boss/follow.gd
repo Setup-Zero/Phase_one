@@ -19,6 +19,3 @@ func transition():
 		get_parent().change_state("shoot_atk")
 	else:
 		get_parent().change_state("follow")
-
-
-

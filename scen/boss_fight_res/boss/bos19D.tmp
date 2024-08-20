@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ciq4dmc7gv0xq"]
+[gd_scene load_steps=25 format=3 uid="uid://ciq4dmc7gv0xq"]
 
 [ext_resource type="Script" path="res://scen/boss_fight_res/boss/boss.gd" id="1_5bh2q"]
 [ext_resource type="Texture2D" uid="uid://bodrsg2cvdb2r" path="res://assets/player.png" id="1_qfjat"]
@@ -10,8 +10,6 @@
 [ext_resource type="Script" path="res://scen/boss_fight_res/boss/bomb_atk.gd" id="9_sm0bi"]
 [ext_resource type="PackedScene" uid="uid://br8rm5j2e2dc4" path="res://scen/bomb_bullet.tscn" id="10_netk1"]
 [ext_resource type="Script" path="res://scen/boss_fight_res/boss/shoot_atk.gd" id="10_x4ye6"]
-[ext_resource type="Texture2D" uid="uid://cyvr2a76w31uf" path="res://jam_assets/Boss_Throw_Bomb.png" id="11_kbrjn"]
-[ext_resource type="Texture2D" uid="uid://q1u7d7j3vlqk" path="res://jam_assets/Boss_walk.png" id="12_uivwr"]
 
 [sub_resource type="Animation" id="Animation_udlen"]
 length = 0.001
@@ -245,74 +243,7 @@ func transition():
 	
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s55wn"]
-atlas = ExtResource("11_kbrjn")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v2wav"]
-atlas = ExtResource("11_kbrjn")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jml7w"]
-atlas = ExtResource("11_kbrjn")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wc5sd"]
-atlas = ExtResource("11_kbrjn")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xdrou"]
-atlas = ExtResource("12_uivwr")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_put4p"]
-atlas = ExtResource("12_uivwr")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8rcn"]
-atlas = ExtResource("12_uivwr")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xophd"]
-atlas = ExtResource("12_uivwr")
-region = Rect2(96, 0, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_i6h4w"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s55wn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v2wav")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jml7w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wc5sd")
-}],
-"loop": true,
-"name": &"boss_trow",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xdrou")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_put4p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8rcn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xophd")
-}],
-"loop": true,
-"name": &"boss_walk",
-"speed": 10.0
-}]
 
 [node name="boss" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -321,7 +252,6 @@ collision_mask = 3
 script = ExtResource("1_5bh2q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.520833, 0.520833)
 texture = ExtResource("1_qfjat")
@@ -414,11 +344,6 @@ script = ExtResource("9_sm0bi")
 bullet_node = ExtResource("10_netk1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_i6h4w")
-animation = &"boss_trow"
-autoplay = "boss_walk"
-frame_progress = 0.81198
 
 [connection signal="body_entered" from="detection" to="StateFiniteMachine/idle" method="_on_detection_body_entered"]
